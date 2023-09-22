@@ -9,6 +9,7 @@ ENV TINI_VERSION v0.19.0
 ENV TINI_URL_amd64=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini \
     TINI_URL_arm64=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-arm64 \
     TINI_URL_s390x=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-s390x \
+    TINI_URL_ppc64le=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-ppc64le \
     TINI_URL=TINI_URL_${ARCH}
 
 RUN curl -sLf ${!TINI_URL} > /usr/bin/tini && chmod +x /usr/bin/tini && \

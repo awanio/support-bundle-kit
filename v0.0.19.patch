@@ -1,0 +1,26 @@
+diff --git a/package/Dockerfile b/package/Dockerfile
+index a6e4f5ac..fc82221c 100644
+--- a/package/Dockerfile
++++ b/package/Dockerfile
+@@ -9,6 +9,7 @@ ENV TINI_VERSION v0.19.0
+ ENV TINI_URL_amd64=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini \
+     TINI_URL_arm64=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-arm64 \
+     TINI_URL_s390x=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-s390x \
++    TINI_URL_ppc64le=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-ppc64le \
+     TINI_URL=TINI_URL_${ARCH}
+ 
+ RUN curl -sLf ${!TINI_URL} > /usr/bin/tini && chmod +x /usr/bin/tini && \
+diff --git a/scripts/package b/scripts/package
+index c488a6dc..955df9bc 100755
+--- a/scripts/package
++++ b/scripts/package
+@@ -16,6 +16,9 @@ case $(uname -m) in
+   x86_64)
+     ARCH=amd64
+     ;;
++  ppc64 | ppc64le)
++    ARCH=ppc64le
++    ;;
+   s390x)
+     ARCH=s390x
+     ;;
